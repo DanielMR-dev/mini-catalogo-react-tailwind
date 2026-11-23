@@ -1,0 +1,16 @@
+node_modules/
+dist/
+dist-ssr/
+coverage/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+*.local
+*.log
+logs/
+*.tmp
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
