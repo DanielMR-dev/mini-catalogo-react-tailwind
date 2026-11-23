@@ -7,7 +7,11 @@ import { CategoryFilter } from './CategoryFilter'
 import { ProductGrid } from './ProductGrid'
 import { SearchBar } from './SearchBar'
 
-export function Catalog({ products }: { products: Product[] }) {
+export function Catalog({ products, favorites, onToggleFavorite }: {
+  products: Product[]
+  favorites: ReadonlySet<number>
+  onToggleFavorite: (id: number) => void
+}) {
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('')
   const query = normalizeTitle(search)
@@ -46,7 +50,7 @@ export function Catalog({ products }: { products: Product[] }) {
         )}
       </div>
       {visibleProducts.length
-        ? <ProductGrid products={visibleProducts} />
+        ? <ProductGrid products={visibleProducts} favorites={favorites} onToggleFavorite={onToggleFavorite} />
         : <CatalogStatus kind="no-matches" onAction={clearFilters} />}
     </>
   )
