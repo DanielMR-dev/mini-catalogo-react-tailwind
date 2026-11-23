@@ -1,6 +1,6 @@
 import { CatalogStatus } from './components/CatalogStatus'
 import { Header } from './components/Header'
-import { ProductGrid } from './components/ProductGrid'
+import { Catalog } from './components/Catalog'
 import { useProducts } from './hooks/useProducts'
 
 export default function App() {
@@ -19,12 +19,14 @@ export default function App() {
           </p>
         </div>
         <section aria-labelledby="products-heading" className="mt-9">
-          <h2 id="products-heading" className="mb-5 text-2xl font-bold tracking-tight">Productos</h2>
-          {state.status === 'loading' && <CatalogStatus kind="loading" />}
-          {state.status === 'error' && <CatalogStatus kind="error" onAction={retry} />}
-          {state.status === 'success' && (state.products.length
-            ? <ProductGrid products={state.products} />
-            : <CatalogStatus kind="empty" />)}
+          {state.status === 'success' && state.products.length ? <Catalog products={state.products} /> : (
+            <>
+              <h2 id="products-heading" className="mb-5 text-2xl font-bold tracking-tight">Productos</h2>
+              {state.status === 'loading' && <CatalogStatus kind="loading" />}
+              {state.status === 'error' && <CatalogStatus kind="error" onAction={retry} />}
+              {state.status === 'success' && <CatalogStatus kind="empty" />}
+            </>
+          )}
         </section>
       </main>
     </div>

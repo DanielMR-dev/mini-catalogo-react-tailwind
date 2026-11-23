@@ -10,3 +10,7 @@ export function formatCategory(category: string) {
     ? categoryNames[category]
     : category.replaceAll('-', ' ')
 }
+
+export function normalizeTitle(value: string) {
+  return value.trim().replace(/\s+/g, ' ').toLowerCase()
+}
